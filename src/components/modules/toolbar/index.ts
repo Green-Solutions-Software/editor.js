@@ -5,7 +5,7 @@ import I18n from '../../i18n';
 import { I18nInternalNS } from '../../i18n/namespace-internal';
 import * as tooltip from '../../utils/tooltip';
 import type { ModuleConfig } from '../../../types-internal/module-config';
-import type Block from '../../block';
+import Block from '../../block';
 import Toolbox, { ToolboxEvent } from '../../ui/toolbox';
 import { IconMenu, IconPlus } from '@codexteam/icons';
 import { BlockHovered } from '../../events/BlockHovered';
@@ -559,7 +559,7 @@ export default class Toolbar extends Module<ToolbarNodes> {
    *
    * @param block - block to move Toolbar near it
    */
-  private assignToolbarLeftPosition(block: Block = this.Editor.BlockManager.currentBlock): void {
+  private assignToolbarLeftPosition(block: Block | undefined = this.Editor.BlockManager.currentBlock): void {
     /**
      * If no Block is selected as a Current
      */
@@ -571,7 +571,7 @@ export default class Toolbar extends Module<ToolbarNodes> {
     const blockContentNode = targetBlockHolder.querySelector(`.${Block.CSS.content}`) as HTMLElement | null;
 
     if (blockContentNode) {
-      this.nodes.wrapper.style.left = `${Math.floor(blockContentNode.offsetLeft)}px`;
+      this.nodes.wrapper!.style.left = `${Math.floor(blockContentNode.offsetLeft)}px`;
     }
   }
 

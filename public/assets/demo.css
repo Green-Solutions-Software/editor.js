@@ -72,7 +72,6 @@ body {
 }
 
 .ce-example__content {
-  max-width: 1100px;
   margin: 0 auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -92,7 +91,6 @@ body {
 }
 
 .ce-example__output-content {
-  max-width: 650px;
   margin: 30px auto;
   color: #ABADC3;
   font-family: 'PT Mono', Menlo, Monaco, Consolas, Courier New, monospace;
