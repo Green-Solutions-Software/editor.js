@@ -42,6 +42,42 @@
     }
   }
 
+  /**
+   * Styles for fullsize holder
+   */
+   &--fullsize &__redactor {
+    @media (--not-mobile) {
+      margin-right: 0;
+    }
+  }
+
+  &--fullsize&--rtl &__redactor {
+    @media (--not-mobile) {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  &--fullsize .ce-block__content {
+    max-width: none;
+  }
+
+  &--fullsize .ce-toolbar__actions {
+    @media (--not-mobile) {
+      right: 5px;
+    }
+  }
+
+  &--fullsize .ce-toolbar__plus {
+    @apply --overlay-pane;
+    position: static;
+  }
+
+  &--fullsize .ce-toolbar__settings-btn {
+    @apply --overlay-pane;
+    position: static;
+  }
+
   &-copyable {
     position: absolute;
     height: 1px;

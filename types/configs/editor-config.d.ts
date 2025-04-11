@@ -101,6 +101,11 @@ export interface EditorConfig {
   inlineToolbar?: string[]|boolean;
 
   /**
+   * Should the editor use all the available width of the container
+   */
+  fullsize?: boolean;
+
+  /**
    * Common Block Tunes list. Will be added to all the blocks which do not specify their own 'tunes' set
    */
   tunes?: string[];

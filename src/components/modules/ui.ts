@@ -50,11 +50,12 @@ export default class UI extends Module<UINodes> {
    */
   public get CSS(): {
     editorWrapper: string; editorWrapperNarrow: string; editorZone: string; editorZoneHidden: string;
-    editorEmpty: string; editorRtlFix: string;
+    editorEmpty: string; editorRtlFix: string; editorWrapperFullsize: string;
     } {
     return {
       editorWrapper: 'codex-editor',
       editorWrapperNarrow: 'codex-editor--narrow',
+      editorWrapperFullsize: 'codex-editor--fullsize',
       editorZone: 'codex-editor__redactor',
       editorZoneHidden: 'codex-editor__redactor--hidden',
       editorEmpty: 'codex-editor--empty',
@@ -297,6 +298,13 @@ export default class UI extends Module<UINodes> {
      */
     if (this.nodes.holder.offsetWidth < this.contentRect.width) {
       this.nodes.wrapper.classList.add(this.CSS.editorWrapperNarrow);
+    }
+
+    /**
+     * If Editor is in Fullsize mode, enable Fullsize Mode
+     */
+    if (this.config.fullsize === true) {
+      this.nodes.wrapper.classList.add(this.CSS.editorWrapperFullsize);
     }
 
     /**
