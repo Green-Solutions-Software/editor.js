@@ -637,6 +637,13 @@ export default class Toolbar extends Module<ToolbarNodes> {
    */
   private drawUI(): void {
     /**
+     * If Toolbar should be hidden, do nothing
+     */
+    if (this.config.hideToolbar === true) {
+      return;
+    }
+
+    /**
      * Make BlockSettings Panel
      */
     this.Editor.BlockSettings.make();
