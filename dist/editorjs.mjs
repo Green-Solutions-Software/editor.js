@@ -121,7 +121,7 @@ function Ie(n, e, t = "log", o, i = "color: inherit") {
       break;
   }
   o && r.push(o);
-  const a = "Editor.js 2.31.0-rc.10", l = `line-height: 1em;
+  const a = "Editor.js 2.31.0-rc.11", l = `line-height: 1em;
             color: #006FEA;
             display: inline-block;
             font-size: 11px;
@@ -5287,9 +5287,9 @@ class Bs extends E {
    * @param {boolean} readOnlyEnabled - read-only mode
    */
   toggleReadOnly(e) {
-    e ? (this.destroy(), this.Editor.BlockSettings.destroy(), this.disableModuleBindings()) : window.requestIdleCallback(() => {
+    !e && this.config.hideToolbar !== !0 ? window.requestIdleCallback(() => {
       this.drawUI(), this.enableModuleBindings();
-    }, { timeout: 2e3 });
+    }, { timeout: 2e3 }) : (this.destroy(), this.Editor.BlockSettings.destroy(), this.disableModuleBindings());
   }
   /**
    * Move Toolbar to the passed (or current) Block
@@ -5297,6 +5297,8 @@ class Bs extends E {
    * @param block - block to move Toolbar near it
    */
   moveAndOpen(e = this.Editor.BlockManager.currentBlock) {
+    if (this.Editor.ReadOnly.isEnabled || this.config.hideToolbar === !0)
+      return;
     if (this.toolboxInstance === null) {
       S("Can't open Toolbar since Editor initialization is not finished yet", "warn");
       return;
@@ -5444,7 +5446,7 @@ class Bs extends E {
    *
    */
   drawUI() {
-    this.config.hideToolbar !== !0 && (this.Editor.BlockSettings.make(), this.make());
+    this.Editor.BlockSettings.make(), this.make();
   }
   /**
    * Removes all created and saved HTMLElements
@@ -9409,7 +9411,7 @@ class ma extends E {
     }), {
       time: +/* @__PURE__ */ new Date(),
       blocks: t,
-      version: "2.31.0-rc.10"
+      version: "2.31.0-rc.11"
     };
   }
 }
@@ -11129,7 +11131,7 @@ class _a {
 class Aa {
   /** Editor version */
   static get version() {
-    return "2.31.0-rc.10";
+    return "2.31.0-rc.11";
   }
   /**
    * @param {EditorConfig|string|undefined} [configuration] - user configuration
