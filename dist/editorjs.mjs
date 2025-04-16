@@ -121,7 +121,7 @@ function Ie(n, e, t = "log", o, i = "color: inherit") {
       break;
   }
   o && r.push(o);
-  const a = "Editor.js 2.31.0-rc.12", l = `line-height: 1em;
+  const a = "Editor.js 2.31.0-rc.14", l = `line-height: 1em;
             color: #006FEA;
             display: inline-block;
             font-size: 11px;
@@ -5333,7 +5333,7 @@ class Bs extends E {
    * Reset the Toolbar position to prevent DOM height growth, for example after blocks deletion
    */
   reset() {
-    this.nodes.wrapper.style.top = "unset";
+    this.nodes.wrapper && (this.nodes.wrapper.style.top = "unset");
   }
   /**
    * Open Toolbar with Plus Button and Actions
@@ -5342,7 +5342,7 @@ class Bs extends E {
    *                                     This flag allows to open Toolbar without Actions.
    */
   open(e = !0) {
-    this.nodes.wrapper.classList.add(this.CSS.toolbarOpened), e ? this.blockActions.show() : this.blockActions.hide();
+    this.nodes.wrapper && (this.nodes.wrapper.classList.add(this.CSS.toolbarOpened), e ? this.blockActions.show() : this.blockActions.hide());
   }
   /**
    * Draws Toolbar elements
@@ -9413,7 +9413,7 @@ class ma extends E {
     }), {
       time: +/* @__PURE__ */ new Date(),
       blocks: t,
-      version: "2.31.0-rc.12"
+      version: "2.31.0-rc.14"
     };
   }
 }
@@ -11133,7 +11133,7 @@ class _a {
 class Aa {
   /** Editor version */
   static get version() {
-    return "2.31.0-rc.12";
+    return "2.31.0-rc.14";
   }
   /**
    * @param {EditorConfig|string|undefined} [configuration] - user configuration
