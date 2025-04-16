@@ -396,7 +396,9 @@ export default class Toolbar extends Module<ToolbarNodes> {
    * Reset the Toolbar position to prevent DOM height growth, for example after blocks deletion
    */
   private reset(): void {
-    this.nodes.wrapper.style.top = 'unset';
+    if (this.nodes.wrapper) {
+      this.nodes.wrapper.style.top = 'unset';
+    }
   }
 
   /**
@@ -406,6 +408,10 @@ export default class Toolbar extends Module<ToolbarNodes> {
    *                                     This flag allows to open Toolbar without Actions.
    */
   private open(withBlockActions = true): void {
+    if (!this.nodes.wrapper) {
+      return;
+    }
+
     this.nodes.wrapper.classList.add(this.CSS.toolbarOpened);
 
     if (withBlockActions) {
