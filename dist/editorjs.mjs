@@ -121,7 +121,7 @@ function Ie(n, e, t = "log", o, i = "color: inherit") {
       break;
   }
   o && r.push(o);
-  const a = "Editor.js 2.31.0-rc.9", l = `line-height: 1em;
+  const a = "Editor.js 2.31.0-rc.10", l = `line-height: 1em;
             color: #006FEA;
             display: inline-block;
             font-size: 11px;
@@ -5444,7 +5444,7 @@ class Bs extends E {
    *
    */
   drawUI() {
-    this.Editor.BlockSettings.make(), this.make();
+    this.config.hideToolbar !== !0 && (this.Editor.BlockSettings.make(), this.make());
   }
   /**
    * Removes all created and saved HTMLElements
@@ -9409,7 +9409,7 @@ class ma extends E {
     }), {
       time: +/* @__PURE__ */ new Date(),
       blocks: t,
-      version: "2.31.0-rc.9"
+      version: "2.31.0-rc.10"
     };
   }
 }
@@ -11129,7 +11129,7 @@ class _a {
 class Aa {
   /** Editor version */
   static get version() {
-    return "2.31.0-rc.9";
+    return "2.31.0-rc.10";
   }
   /**
    * @param {EditorConfig|string|undefined} [configuration] - user configuration
