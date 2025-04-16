@@ -202,10 +202,10 @@ export default class Toolbar extends Module<ToolbarNodes> {
   private get blockActions(): { hide: () => void; show: () => void } {
     return {
       hide: (): void => {
-        this.nodes.actions.classList.remove(this.CSS.actionsOpened);
+        this.nodes.actions?.classList.remove(this.CSS.actionsOpened);
       },
       show: (): void => {
-        this.nodes.actions.classList.add(this.CSS.actionsOpened);
+        this.nodes.actions?.classList.add(this.CSS.actionsOpened);
       },
     };
   }
