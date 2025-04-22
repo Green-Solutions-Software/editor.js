@@ -121,7 +121,7 @@ function Ie(n, e, t = "log", o, i = "color: inherit") {
       break;
   }
   o && r.push(o);
-  const a = "Editor.js 2.31.0-rc.14", l = `line-height: 1em;
+  const a = "Editor.js 2.31.0-rc.15", l = `line-height: 1em;
             color: #006FEA;
             display: inline-block;
             font-size: 11px;
@@ -5320,7 +5320,7 @@ class Bs extends E {
       const h = li(r), p = parseInt(window.getComputedStyle(this.nodes.plusButton).height, 10), g = 8;
       i = t.offsetTop + h - p + g + c;
     }
-    this.nodes.wrapper.style.top = `${Math.floor(i)}px`, this.assignToolbarLeftPosition(e), this.Editor.BlockManager.blocks.length === 1 && e.isEmpty ? this.blockTunesToggler.hide() : this.blockTunesToggler.show(), this.open();
+    this.nodes.wrapper && (this.nodes.wrapper.style.top = `${Math.floor(i)}px`), this.assignToolbarLeftPosition(e), this.Editor.BlockManager.blocks.length === 1 && e.isEmpty ? this.blockTunesToggler.hide() : this.blockTunesToggler.show(), this.open();
   }
   /**
    * Close the Toolbar
@@ -5632,7 +5632,7 @@ class Cs extends E {
    * Clear orientation classes and reset position
    */
   reset() {
-    this.nodes.wrapper.style.left = "0", this.nodes.wrapper.style.top = "0";
+    this.nodes.wrapper && (this.nodes.wrapper.style.left = "0", this.nodes.wrapper.style.top = "0");
   }
   /**
    * Need to show Inline Toolbar or not
@@ -9413,7 +9413,7 @@ class ma extends E {
     }), {
       time: +/* @__PURE__ */ new Date(),
       blocks: t,
-      version: "2.31.0-rc.14"
+      version: "2.31.0-rc.15"
     };
   }
 }
@@ -11133,7 +11133,7 @@ class _a {
 class Aa {
   /** Editor version */
   static get version() {
-    return "2.31.0-rc.14";
+    return "2.31.0-rc.15";
   }
   /**
    * @param {EditorConfig|string|undefined} [configuration] - user configuration

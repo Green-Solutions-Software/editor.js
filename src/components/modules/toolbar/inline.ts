@@ -1,18 +1,18 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import type InlineToolAdapter from 'src/components/tools/inline';
+import type { InlineTool as IInlineTool } from '../../../../types';
+import type { ModuleConfig } from '../../../types-internal/module-config';
 import Module from '../../__module';
 import $ from '../../dom';
-import SelectionUtils from '../../selection';
-import * as _ from '../../utils';
-import type { InlineTool as IInlineTool } from '../../../../types';
 import I18n from '../../i18n';
 import { I18nInternalNS } from '../../i18n/namespace-internal';
-import Shortcuts from '../../utils/shortcuts';
-import type { ModuleConfig } from '../../../types-internal/module-config';
+import SelectionUtils from '../../selection';
 import { CommonInternalSettings } from '../../tools/base';
+import * as _ from '../../utils';
 import type { Popover, PopoverItemHtmlParams, PopoverItemParams, WithChildren } from '../../utils/popover';
 import { PopoverItemType } from '../../utils/popover';
 import { PopoverInline } from '../../utils/popover/popover-inline';
-import type InlineToolAdapter from 'src/components/tools/inline';
+import Shortcuts from '../../utils/shortcuts';
 
 /**
  * Inline Toolbar elements
@@ -244,8 +244,11 @@ export default class InlineToolbar extends Module<InlineToolbarNodes> {
    * Clear orientation classes and reset position
    */
   private reset(): void {
-    this.nodes.wrapper!.style.left = '0';
-    this.nodes.wrapper!.style.top = '0';
+    if (!this.nodes.wrapper) {
+      return;
+    }
+    this.nodes.wrapper.style.left = '0';
+    this.nodes.wrapper.style.top = '0';
   }
 
   /**

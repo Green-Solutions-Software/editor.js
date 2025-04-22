@@ -359,7 +359,9 @@ export default class Toolbar extends Module<ToolbarNodes> {
      * Move Toolbar to the Top coordinate of Block
      */
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    this.nodes.wrapper!.style.top = `${Math.floor(toolbarY)}px`;
+    if (this.nodes.wrapper) {
+      this.nodes.wrapper.style.top = `${Math.floor(toolbarY)}px`;
+    }
 
     this.assignToolbarLeftPosition(block);
 
