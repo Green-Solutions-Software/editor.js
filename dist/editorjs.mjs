@@ -121,7 +121,7 @@ function Ie(n, e, t = "log", o, i = "color: inherit") {
       break;
   }
   o && r.push(o);
-  const a = "Editor.js 2.31.0-rc.15", l = `line-height: 1em;
+  const a = "Editor.js 2.31.0-rc.16", l = `line-height: 1em;
             color: #006FEA;
             display: inline-block;
             font-size: 11px;
@@ -9413,7 +9413,7 @@ class ma extends E {
     }), {
       time: +/* @__PURE__ */ new Date(),
       blocks: t,
-      version: "2.31.0-rc.15"
+      version: "2.31.0-rc.16"
     };
   }
 }
@@ -9873,13 +9873,15 @@ class Fn {
   /**
    * @param api - Editor.js API
    */
-  constructor({ api: e }) {
-    this.i18nAPI = e.i18n, this.blocksAPI = e.blocks, this.selectionAPI = e.selection, this.toolsAPI = e.tools, this.caretAPI = e.caret;
+  constructor({ api: e, config: t }) {
+    this.i18nAPI = e.i18n, this.blocksAPI = e.blocks, this.selectionAPI = e.selection, this.toolsAPI = e.tools, this.caretAPI = e.caret, this.config = t;
   }
   /**
    * Returns tool's UI config
    */
   async render() {
+    if (this.config.enabled !== !0)
+      return [];
     const e = b.get(), t = this.blocksAPI.getBlockByElement(e.anchorNode);
     if (t === void 0)
       return [];
@@ -10400,6 +10402,9 @@ class Wn extends E {
     return {
       convertTo: {
         class: Fn,
+        config: {
+          enabled: !(this.config.hideInlineConvert ?? !1)
+        },
         isInternal: !0
       },
       link: {
@@ -11133,7 +11138,7 @@ class _a {
 class Aa {
   /** Editor version */
   static get version() {
-    return "2.31.0-rc.15";
+    return "2.31.0-rc.16";
   }
   /**
    * @param {EditorConfig|string|undefined} [configuration] - user configuration
