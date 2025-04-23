@@ -179,6 +179,9 @@ export default class Tools extends Module {
     return {
       convertTo: {
         class: ConvertInlineTool,
+        config: {
+          enabled: !(this.config.hideInlineConvert ?? false),
+        },
         isInternal: true,
       },
       link: {

@@ -52,6 +52,11 @@ export interface EditorConfig {
   hideToolbar?: boolean;
 
   /**
+   * If true, the convert-dropdown in the inline-toolbar gets hidden
+   */
+  hideInlineConvert?: boolean;
+
+  /**
    * Map of Tools to use
    */
   tools?: {
