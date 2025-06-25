@@ -98,9 +98,13 @@ export default class BlockSettings extends Module<BlockSettingsNodes> {
    * Destroys module
    */
   public destroy(): void {
+    const isInitialized = !!this.nodes.wrapper;
+
     this.removeAllNodes();
     this.listeners.destroy();
-    this.eventsDispatcher.off(EditorMobileLayoutToggled, this.close);
+    if (isInitialized) {
+      this.eventsDispatcher.off(EditorMobileLayoutToggled, this.close);
+    }
   }
 
   /**

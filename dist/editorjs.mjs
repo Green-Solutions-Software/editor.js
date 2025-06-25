@@ -121,7 +121,7 @@ function Ie(n, e, t = "log", o, i = "color: inherit") {
       break;
   }
   o && r.push(o);
-  const a = "Editor.js 2.31.0-rc.16", l = `line-height: 1em;
+  const a = "Editor.js 2.31.0-rc.17", l = `line-height: 1em;
             color: #006FEA;
             display: inline-block;
             font-size: 11px;
@@ -4729,7 +4729,8 @@ class ms extends E {
    * Destroys module
    */
   destroy() {
-    this.removeAllNodes(), this.listeners.destroy(), this.eventsDispatcher.off(Te, this.close);
+    const e = !!this.nodes.wrapper;
+    this.removeAllNodes(), this.listeners.destroy(), e && this.eventsDispatcher.off(Te, this.close);
   }
   /**
    * Open Block Settings pane
@@ -9413,7 +9414,7 @@ class ma extends E {
     }), {
       time: +/* @__PURE__ */ new Date(),
       blocks: t,
-      version: "2.31.0-rc.16"
+      version: "2.31.0-rc.17"
     };
   }
 }
@@ -11138,7 +11139,7 @@ class _a {
 class Aa {
   /** Editor version */
   static get version() {
-    return "2.31.0-rc.16";
+    return "2.31.0-rc.17";
   }
   /**
    * @param {EditorConfig|string|undefined} [configuration] - user configuration
