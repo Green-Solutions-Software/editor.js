@@ -1,5 +1,9 @@
 # Changelog
 
+### 2.31.1
+
+- `Fix` - Prevent the warning from appearing when `readOnly` mode is initially set to `true`
+
 ### 2.31.0
 
 - `New` - Inline tools (those with `isReadOnlySupported` specified) can now be used in read-only mode

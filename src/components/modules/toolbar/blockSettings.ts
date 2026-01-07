@@ -69,6 +69,11 @@ export default class BlockSettings extends Module<BlockSettingsNodes> {
   }
 
   /**
+   * Flag that indicates whether the `EditorMobileLayoutToggled` event listener is attached.
+   */
+  private hasMobileLayoutToggleListener = false;
+
+  /**
    * Page selection utils
    */
   private selection: SelectionUtils = new SelectionUtils();
@@ -92,6 +97,7 @@ export default class BlockSettings extends Module<BlockSettingsNodes> {
     }
 
     this.eventsDispatcher.on(EditorMobileLayoutToggled, this.close);
+    this.hasMobileLayoutToggleListener = true;
   }
 
   /**
@@ -100,7 +106,11 @@ export default class BlockSettings extends Module<BlockSettingsNodes> {
   public destroy(): void {
     this.removeAllNodes();
     this.listeners.destroy();
-    this.eventsDispatcher.off(EditorMobileLayoutToggled, this.close);
+
+    if (this.hasMobileLayoutToggleListener) {
+      this.eventsDispatcher.off(EditorMobileLayoutToggled, this.close);
+      this.hasMobileLayoutToggleListener = false;
+    }
   }
 
   /**
