@@ -71,4 +71,54 @@ describe('Inline Tool Link', () => {
       .find('.ce-paragraph span[style]')
       .should('not.exist');
   });
+
+  it('should preserve link when applying bold to linked text', () => {
+    cy.createEditor({
+      data: {
+        blocks: [
+          {
+            type: 'paragraph',
+            data: {
+              text: 'Text with link',
+            },
+          },
+        ],
+      },
+    });
+
+    cy.get('[data-cy=editorjs]')
+      .find('.ce-paragraph')
+      .selectText('Text with link');
+
+    cy.get('[data-cy=editorjs]')
+      .find('[data-item-name=link]')
+      .click();
+
+    cy.get('[data-cy=editorjs]')
+      .find('.ce-inline-tool-input')
+      .type('https://editorjs.io')
+      .type('{enter}');
+
+    cy.get('[data-cy=editorjs]')
+      .find('div.ce-block')
+      .find('a')
+      .should('have.attr', 'href', 'https://editorjs.io');
+
+    cy.get('[data-cy=editorjs]')
+      .find('div.ce-block')
+      .find('a')
+      .selectText('Text with link');
+
+    cy.get('[data-cy=editorjs]')
+      .find('[data-item-name=bold]')
+      .click();
+
+    cy.get('[data-cy=editorjs]')
+      .find('div.ce-block')
+      .find('a')
+      .should('have.attr', 'href', 'https://editorjs.io')
+      .find('b')
+      .should('exist')
+      .should('contain', 'Text with link');
+  });
 });
