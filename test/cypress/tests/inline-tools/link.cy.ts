@@ -121,4 +121,75 @@ describe('Inline Tool Link', () => {
       .should('exist')
       .should('contain', 'Text with link');
   });
+
+  it('should preserve bold and italic when applying link', () => {
+    cy.createEditor({
+      data: {
+        blocks: [
+          {
+            type: 'paragraph',
+            data: {
+              text: 'Bold and italic text',
+            },
+          },
+        ],
+      },
+    });
+
+    cy.get('[data-cy=editorjs]')
+      .find('.ce-paragraph')
+      .selectText('Bold and italic text');
+    
+    cy.get('[data-cy=editorjs]')
+      .find('[data-item-name=bold]')
+      .click();
+
+    cy.get('[data-cy=editorjs]')
+      .find('div.ce-block')
+      .find('b')
+      .should('exist')
+      .should('contain', 'Bold and italic text');
+    
+    cy.get('[data-cy=editorjs]')
+      .find('div.ce-block')
+      .find('b')
+      .selectText('Bold and italic text');
+
+    cy.get('[data-cy=editorjs]')
+      .find('[data-item-name=italic]')
+      .click();
+
+    cy.get('[data-cy=editorjs]')
+      .find('div.ce-block')
+      .find('b')
+      .should('exist')
+      .find('i')
+      .should('exist')
+      .should('contain', 'Bold and italic text');
+
+    cy.get('[data-cy=editorjs]')
+      .find('div.ce-block')
+      .find('b')
+      .find('i')
+      .selectText('Bold and italic text');
+
+    cy.get('[data-cy=editorjs]')
+      .find('[data-item-name=link]')
+      .click();
+
+    cy.get('[data-cy=editorjs]')
+      .find('.ce-inline-tool-input')
+      .type('https://editorjs.io')
+      .type('{enter}');
+
+    cy.get('[data-cy=editorjs]')
+      .find('div.ce-block')
+      .find('b')
+      .should('exist')
+      .find('i')
+      .should('exist')
+      .find('a')
+      .should('have.attr', 'href', 'https://editorjs.io')
+      .should('contain', 'Bold and italic text');
+  });
 });

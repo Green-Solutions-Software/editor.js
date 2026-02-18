@@ -1,5 +1,9 @@
 # Changelog
 
+### 2.31.3
+
+- `Fix` - Prevent text formatting removal when applying link
+
 ### 2.31.2
 
 - `Fix` - Prevent link removal when applying bold to linked text
