@@ -57,10 +57,9 @@ export default class SelectionUtils {
   public isFakeBackgroundEnabled = false;
 
   /**
-   * Native Document's commands for fake background
+   * Native Document's command for fake background
    */
   private readonly commandBackground: string = 'backColor';
-  private readonly commandRemoveFormat: string = 'removeFormat';
 
   /**
    * Editor styles
@@ -416,9 +415,9 @@ export default class SelectionUtils {
     if (!this.isFakeBackgroundEnabled) {
       return;
     }
+    document.execCommand(this.commandBackground, false, 'transparent');
 
     this.isFakeBackgroundEnabled = false;
-    document.execCommand(this.commandRemoveFormat);
   }
 
   /**

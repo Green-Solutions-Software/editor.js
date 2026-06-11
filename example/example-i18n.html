@@ -50,7 +50,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script><!-- Image -->
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest"></script><!-- Delimiter -->
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script><!-- List -->
-<script src="https://cdn.jsdelivr.net/npm/@editorjs/checklist@latest"></script><!-- Checklist -->
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script><!-- Quote -->
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/code@latest"></script><!-- Code -->
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script><!-- Embed -->
@@ -107,14 +106,9 @@
       image: ImageTool,
 
       list: {
-        class: List,
+        class: EditorjsList,
         inlineToolbar: true,
         shortcut: 'CMD+SHIFT+L'
-      },
-
-      checklist: {
-        class: Checklist,
-        inlineToolbar: true,
       },
 
       quote: {
@@ -198,7 +192,11 @@
           },
           "popover": {
             "Filter": "Поиск",
-            "Nothing found": "Ничего не найдено"
+            "Nothing found": "Ничего не найдено",
+            /**
+             * Translation of "Convert To"  at the Block Tunes Popover
+             */
+            "Convert to": "Конвертировать в",
           }
         },
 
@@ -208,7 +206,8 @@
         "toolNames": {
           "Text": "Параграф",
           "Heading": "Заголовок",
-          "List": "Список",
+          "Ordered List": "Нумерованный список",
+          "Unordered List": "Маркированный список",
           "Warning": "Примечание",
           "Checklist": "Чеклист",
           "Quote": "Цитата",
@@ -221,7 +220,7 @@
           "Bold": "Полужирный",
           "Italic": "Курсив",
           "InlineCode": "Моноширинный",
-          "Image": "Картинка"
+          "Image": "Картинка",
         },
 
         /**
@@ -266,7 +265,12 @@
             "Wrong response format from the server": "Неполадки на сервере",
           },
           "header": {
-            "Header": "Заголовок",
+            "Heading 1": "Заголовок 1",
+            "Heading 2": "Заголовок 2",
+            "Heading 3": "Заголовок 3",
+            "Heading 4": "Заголовок 4",
+            "Heading 5": "Заголовок 5",
+            "Heading 6": "Заголовок 6",
           },
           "paragraph": {
             "Enter something": "Введите текст"
@@ -274,7 +278,14 @@
           "list": {
             "Ordered": "Нумерованный",
             "Unordered": "Маркированный",
-          }
+            "Checklist": "Чеклист",
+          },
+          /**
+           * Translation of "Convert To"  at the Inline Toolbar hint
+           */
+          "convertTo": {
+            "Convert to": "Конвертировать в"
+          },
         },
 
         /**
@@ -288,14 +299,15 @@
            * Also, there are few internal block tunes: "delete", "moveUp" and "moveDown"
            */
           "delete": {
-            "Delete": "Удалить"
+            "Delete": "Удалить",
+            "Click to delete": "Подтвердить удаление"
           },
           "moveUp": {
             "Move up": "Переместить вверх"
           },
           "moveDown": {
             "Move down": "Переместить вниз"
-          }
+          },
         },
       }
     },

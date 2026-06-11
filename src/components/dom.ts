@@ -567,6 +567,16 @@ export default class Dom {
   }
 
   /**
+   * Returns the closest ancestor anchor (A tag) of the given element (including itself)
+   * 
+   * @param element - element to check
+   * @returns {HTMLAnchorElement | null}
+   */
+  public static getClosestAnchor(element: Element): HTMLAnchorElement | null {
+    return element.closest("a");
+  }
+
+  /**
    * Return element's offset related to the document
    *
    * @todo handle case when editor initialized in scrollable popup
@@ -623,6 +633,9 @@ export default class Dom {
 
     /**
      * If no node found or last node is empty, return null
+     * - The root node has no text nodes at all
+     * - The TreeWalker couldn't find any text nodes in the DOM tree
+     * - The root node itself is null or invalid
      */
     if (!lastTextNode) {
       return {
@@ -633,6 +646,14 @@ export default class Dom {
 
     const textContent = lastTextNode.textContent;
 
+    /**
+     * - The text node exists but has no content (textContent is null)
+     * - The text node exists but has empty content (textContent.length === 0)
+     * This could be due to:
+     * - Empty text nodes (<span></span>)
+     * - Nodes with only whitespace
+     * - Nodes that were cleared but not removed
+     */
     if (textContent === null || textContent.length === 0) {
       return {
         node: null,

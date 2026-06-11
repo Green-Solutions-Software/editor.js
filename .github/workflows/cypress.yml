@@ -8,12 +8,19 @@ jobs:
       matrix:
         browser: [firefox, chrome, edge]
 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - uses: actions/checkout@v4
+
+      - name: Setup Firefox
+        if: matrix.browser == 'firefox'
+        uses: browser-actions/setup-firefox@v1
+        with:
+          firefox-version: '115.0esr'
+
       - uses: cypress-io/github-action@v6
         with:
           config: video=false

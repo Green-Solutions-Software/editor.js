@@ -1,5 +1,29 @@
 # Changelog
 
+### 2.31.6
+
+- `Fix` - Widen `sanitize` type on `BlockTool` and `BaseToolConstructable` to accept per-field `SanitizerConfig`
+
+### 2.31.5
+
+- `Fix` - Handle __Ctrl + click__ on links with inline styles applied (e.g., bold, italic)
+
+### 2.31.4
+
+- `Fix` - Prevent inline-toolbar re-renders when linked text is selected
+
+### 2.31.3
+
+- `Fix` - Prevent text formatting removal when applying link
+
+### 2.31.2
+
+- `Fix` - Prevent link removal when applying bold to linked text
+
+### 2.31.1
+
+- `Fix` - Prevent the warning from appearing when `readOnly` mode is initially set to `true`
+
 ### 2.31.0
 
 - `New` - Inline tools (those with `isReadOnlySupported` specified) can now be used in read-only mode
@@ -16,6 +40,11 @@
 - `DX` - Tools submodules removed from the repository
 - `Improvement` - Shift + Down/Up will allow to select next/previous line instead of Inline Toolbar flipping
 - `Improvement` - The API `caret.setToBlock()` offset now works across the entire block content, not just the first or last node.
+- `Improvement` - The API `blocks.renderFromHTML()` became async and now can be awaited.
+- `Fix` - `blocks.renderFromHTML()` — Error  "Can't find a Block to remove." fixed
+- `Fix` - The API `.clear()` index invalidation fixed
+
+
 
 ### 2.30.7
 

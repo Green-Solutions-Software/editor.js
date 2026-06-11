@@ -1,19 +1,19 @@
+import { PopoverEvent } from '@/types/utils/popover/popover-event';
+import { IconReplace } from '@codexteam/icons';
+import type { MenuConfigItem } from '../../../../types/tools';
 import Module from '../../__module';
-import $ from '../../dom';
-import SelectionUtils from '../../selection';
 import type Block from '../../block';
+import $ from '../../dom';
+import { EditorMobileLayoutToggled } from '../../events';
+import type Flipper from '../../flipper';
 import I18n from '../../i18n';
 import { I18nInternalNS } from '../../i18n/namespace-internal';
-import type Flipper from '../../flipper';
-import type { MenuConfigItem } from '../../../../types/tools';
-import { resolveAliases } from '../../utils/resolve-aliases';
-import type { PopoverItemParams } from '../../utils/popover';
-import { type Popover, PopoverDesktop, PopoverMobile, PopoverItemType } from '../../utils/popover';
-import { PopoverEvent } from '@/types/utils/popover/popover-event';
+import SelectionUtils from '../../selection';
 import { isMobileScreen } from '../../utils';
-import { EditorMobileLayoutToggled } from '../../events';
-import { IconReplace } from '@codexteam/icons';
 import { getConvertibleToolsForBlock } from '../../utils/blocks';
+import type { PopoverItemParams } from '../../utils/popover';
+import { type Popover, PopoverDesktop, PopoverItemType, PopoverMobile } from '../../utils/popover';
+import { resolveAliases } from '../../utils/resolve-aliases';
 
 /**
  * HTML Elements that used for BlockSettings
@@ -69,6 +69,11 @@ export default class BlockSettings extends Module<BlockSettingsNodes> {
   }
 
   /**
+   * Flag that indicates whether the `EditorMobileLayoutToggled` event listener is attached.
+   */
+  private hasMobileLayoutToggleListener = false;
+
+  /**
    * Page selection utils
    */
   private selection: SelectionUtils = new SelectionUtils();
@@ -92,6 +97,7 @@ export default class BlockSettings extends Module<BlockSettingsNodes> {
     }
 
     this.eventsDispatcher.on(EditorMobileLayoutToggled, this.close);
+    this.hasMobileLayoutToggleListener = true;
   }
 
   /**
@@ -102,8 +108,10 @@ export default class BlockSettings extends Module<BlockSettingsNodes> {
 
     this.removeAllNodes();
     this.listeners.destroy();
-    if (isInitialized) {
+
+    if (this.hasMobileLayoutToggleListener && isInitialized) {
       this.eventsDispatcher.off(EditorMobileLayoutToggled, this.close);
+      this.hasMobileLayoutToggleListener = false;
     }
   }
 
@@ -112,7 +120,8 @@ export default class BlockSettings extends Module<BlockSettingsNodes> {
    *
    * @param targetBlock - near which Block we should open BlockSettings
    */
-  public async open(targetBlock: Block = this.Editor.BlockManager.currentBlock): Promise<void> {
+  public async open(targetBlock: Block | undefined = this.Editor.BlockManager.currentBlock): Promise<void> {
+    if(!targetBlock) return;
     this.opened = true;
 
     /**
